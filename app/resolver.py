@@ -23,7 +23,7 @@ def random_genres_items(genre):
 def random_genres_items_best(genre):
     movies_df = pd.read_csv("data/movies_final.csv")
     genre_df = movies_df[movies_df['genres'].apply(lambda x: genre in x.lower())]
-    genre_df = genre_df.filla('')
+    genre_df = genre_df.fillna('')
     # Todo 선택한 장르의 갯수가 5보다 작은 경우 처리해야함
     result_items = (genre_df.query('rcount>= 5').sort_values('rmean', ascending=False).head(5).to_dict("records"))
     return result_items
