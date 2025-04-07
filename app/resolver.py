@@ -10,10 +10,11 @@ def random_genres_items(genre):
     movies_df = pd.read_csv("data/movies_final.csv")
     genre_df = movies_df[movies_df['genres'].apply(lambda x: genre in x.lower())]
     genre_df = genre_df.fillna('')
+
     # Todo 선택한 장르의 갯수가 5보다 작은 경우 처리해야함 : 2025.3.31 정예진
+    # genre_df.size, len(genre_df,
 
     nitem = min(5, genre_df.size)
-    print(genre_df.shape)
     result_items = genre_df.sample(n=nitem).to_dict("records")
     return result_items
 
